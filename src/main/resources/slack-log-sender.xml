@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<configuration>
-
-<!--    <include resource="slack-log-sender.xml"/>-->
+<included>
     <springProperty name="SLACK_WEBHOOK_URI" source="logging.slack.webhook-uri"/>
     <appender name="SLACK" class="com.github.maricn.logback.SlackAppender">
         <webhookUri>${SLACK_WEBHOOK_URI}</webhookUri>
         <layout class="ch.qos.logback.classic.PatternLayout">
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} logTest: %msg %n</pattern>
         </layout>
+        <!--        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">-->
+        <!--            <level>ERROR</level>-->
+        <!--        </filter>-->
         <username>${HOSTNAME}</username>
         <iconEmoji>:sadblob:</iconEmoji>
         <colorCoding>true</colorCoding>
@@ -21,16 +21,9 @@
         </filter>
     </appender>
 
-
-    <!-- Consol appender 설정 -->
-    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <Pattern>%d %-5level %logger{35} - %msg%n</Pattern>
-        </encoder>
-    </appender>
-
     <root level="INFO">
-        <appender-ref ref="Console" />
         <appender-ref ref="ASYNC_SLACK"/>
+        <!--        <appender-ref ref="SLACK"/>-->
     </root>
-</configuration>
+
+</included>
