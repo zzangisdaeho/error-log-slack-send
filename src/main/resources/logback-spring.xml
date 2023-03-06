@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
+
     <include resource="slack-log-sender.xml"/>
 
-    <!-- Consol appender 설정 -->
+<!--     
     <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <Pattern>%d %-5level %logger{35} - %msg%n</Pattern>
@@ -12,5 +13,9 @@
 
     <root level="INFO">
         <appender-ref ref="Console" />
-    </root>
+    </root> 
+-->
+<!--  spring base console appender 사용   -->
+    <include resource="org/springframework/boot/logging/logback/base.xml" />
+    
 </configuration>
